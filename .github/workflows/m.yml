@@ -1,0 +1,26 @@
+name: mirror
+
+on:
+  repository_dispatch:
+    types: [mirror]
+
+jobs:
+
+  mirror:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: pull
+      run: |
+        git clone --bare git://git.code.sf.net/p/sbcl/sbcl sbcl
+      working-directory: /tmp
+
+    - name: push
+      run: |
+        cd /tmp/sbcl
+        git push --mirror https://sbcl:${{ secrets.MIRRORPAT }}@github.com/sbcl/sbcl.git
+
