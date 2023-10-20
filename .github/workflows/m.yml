@@ -9,7 +9,7 @@ jobs:
   mirror:
 
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 10
 
     steps:
     - uses: actions/checkout@v3
@@ -17,7 +17,7 @@ jobs:
     - name: pull
       run: |
         while ! git clone --bare git://git.code.sf.net/p/sbcl/sbcl sbcl; do
-          sleep 1
+          sleep 5
         done
 
       working-directory: /tmp
