@@ -16,7 +16,7 @@ jobs:
 
     - name: pull
       run: |
-        while ! git clone --bare https://git.code.sf.net/p/sbcl/sbcl sbcl; do
+        while ! git clone --mirror https://git.code.sf.net/p/sbcl/sbcl sbcl; do
           sleep 5
         done
 
