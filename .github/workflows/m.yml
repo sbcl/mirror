@@ -26,7 +26,7 @@ jobs:
 
     - name: fetch
       run: |
-        while ! git fetch --all; do
+        while ! git fetch --prune; do
           sleep 5
         done
 
