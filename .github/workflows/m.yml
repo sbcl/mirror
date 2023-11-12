@@ -14,13 +14,23 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: pull
+    - name: clone
       run: |
-        while ! git clone --mirror https://git.code.sf.net/p/sbcl/sbcl sbcl; do
+        while ! git clone --mirror https://github.com/sbcl/sbcl.git sbcl; do
+          sleep 5
+        done
+        cd sbcl
+        git remote set-url origin https://git.code.sf.net/p/sbcl/sbcl
+
+      working-directory: /tmp
+
+    - name: fetch
+      run: |
+        while ! git fetch --all; do
           sleep 5
         done
 
-      working-directory: /tmp
+      working-directory: /tmp/sbcl
 
     - name: push
       run: |
