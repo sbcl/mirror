@@ -8,7 +8,7 @@ jobs:
 
   mirror:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     timeout-minutes: 20
 
     steps:
